@@ -1,0 +1,13 @@
+name: TriggersWorkflow
+run-name: triggers-workflow-event
+on:
+  push:
+    branches: ['main', 'aprendiendo-github-actions']
+  pull_request:
+  workflow_dispatch:
+jobs:
+  triggers-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: execute-trigger-job
+        run: echo Message from trigger workflow

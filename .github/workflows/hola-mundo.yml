@@ -1,0 +1,11 @@
+name: HelloWorld
+run-name: hello-world-workflow
+on: [push]
+jobs:
+  print-hello_world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: PrintMessage
+        run: node helloWorld.js
