@@ -8,28 +8,28 @@ env:
 
 jobs:
   deploy-staging:
-    if: ${{ $ENVIRONMENT == staging }}
+    if: ${{ env.ENVIRONMENT == staging }}
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to stating...
         run: echo Deploying to $ENVIRONMENT
 
   deploy-prod:
-    if: ${{ $ENVIRONMENT == production }}
+    if: ${{ env.ENVIRONMENT == production }}
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to production...
         run: echo Deploying to $ENVIRONMENT
 
   greater:
-    if: ${{ $GREATER_THAN }}
+    if: ${{ env.GREATER_THAN }}
     runs-on: ubuntu-latest
     steps:
       - name: Print is greater
         run: echo The age is enough $GREATER_THAN
 
   run-unit-test:
-    if: ${{ contains($BRANCH_NAME, 'actions') }}
+    if: ${{ contains(env.BRANCH_NAME, 'actions') }}
     runs-on: ubuntu-latest
     steps:
       - name: run-unit
