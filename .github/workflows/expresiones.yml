@@ -1,45 +1,63 @@
-name: ExpressionWorkflow
-run-name: expressions-workflow
+name: Conditional env variable
+
 on: push
 
 env:
-  ENVIRONMENT: staging
-  BRANCH_NAME: ${{ github.ref_name }}
+  DAY_OF_WEEK: Monday
 
 jobs:
-  deploy-staging:
-    if: ${{ env.ENVIRONMENT == 'staging' }}
+  greeting_job:
     runs-on: ubuntu-latest
+    env:
+      Greeting: Hello
     steps:
-      - name: Deploy to stating...
-        run: echo Deploying to $ENVIRONMENT
+      - name: "Say Hello Mona it's Monday"
+        if: ${{ env.DAY_OF_WEEK == 'Monday' }}
+        run: echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!"
+        env:
+          First_Name: Mona
+# name: ExpressionWorkflow
+# run-name: expressions-workflow
+# on: push
 
-  deploy-prod:
-    if: ${{ env.ENVIRONMENT == 'production' }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to production...
-        run: echo Deploying to $ENVIRONMENT
+# env:
+#   ENVIRONMENT: staging
+#   BRANCH_NAME: ${{ github.ref_name }}
 
-  greater:
-    if: ${{ 34 > 18 }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print is greater
-        run: echo The age is enough $GREATER_THAN
+# jobs:
+#   deploy-staging:
+#     if: ${{ env.ENVIRONMENT == 'staging' }}
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Deploy to stating...
+#         run: echo Deploying to $ENVIRONMENT
 
-  run-unit-test:
-    if: ${{ contains(env.BRANCH_NAME, 'actions') }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: run-unit
-        run: echo Running test in $BRANCH_NAME branches
+#   deploy-prod:
+#     if: ${{ env.ENVIRONMENT == 'production' }}
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Deploy to production...
+#         run: echo Deploying to $ENVIRONMENT
 
-  print-all-vars:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Printing...
-        run: |
-          echo $ENVIRONMENT
-          echo $GREATER_THAN
-          echo $BRANCH_NAME
+#   greater:
+#     if: ${{ 34 > 18 }}
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Print is greater
+#         run: echo The age is enough $GREATER_THAN
+
+#   run-unit-test:
+#     if: ${{ contains(env.BRANCH_NAME, 'actions') }}
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: run-unit
+#         run: echo Running test in $BRANCH_NAME branches
+
+#   print-all-vars:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Printing...
+#         run: |
+#           echo $ENVIRONMENT
+#           echo $GREATER_THAN
+#           echo $BRANCH_NAME
