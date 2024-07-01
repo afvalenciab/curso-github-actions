@@ -8,14 +8,14 @@ env:
 
 jobs:
   deploy-staging:
-    if: ${{ env.ENVIRONMENT == staging }}
+    if: ${{ env.ENVIRONMENT == 'staging' }}
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to stating...
         run: echo Deploying to $ENVIRONMENT
 
   deploy-prod:
-    if: ${{ env.ENVIRONMENT == production }}
+    if: ${{ env.ENVIRONMENT == 'production' }}
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to production...
