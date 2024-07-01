@@ -1,5 +1,5 @@
-name: ExpressionWorkflow
-run-name: expressions-workflow
+name: ContextWorkflow
+run-name: context-workflow
 on: push
 jobs:
   run_unit_test:
@@ -14,6 +14,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Printing context...
-        run: |
-          echo ${{ github.job }}
-          echo ${{ jobs.job_context.name }}
+        run: echo ${{ github.job }}
