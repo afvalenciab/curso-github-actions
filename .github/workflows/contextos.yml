@@ -1,0 +1,19 @@
+name: ExpressionWorkflow
+run-name: expressions-workflow
+on: push
+jobs:
+  run_unit_test:
+    if: ${{ contains(github.ref_name, 'actions') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: run-unit
+        run: echo Running test in ${{ github.ref_name }} branches
+
+  job_context:
+    name: Job Context
+    runs-on: ubuntu-latest
+    steps:
+      - name: Printing context...
+        run: |
+          echo ${{ github.job }}
+          echo ${{ jobs.job_context.name }}
